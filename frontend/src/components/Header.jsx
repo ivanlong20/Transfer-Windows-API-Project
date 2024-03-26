@@ -80,21 +80,34 @@ function Header(props) {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "", sm: "block" } }}
+            sx={{ flexGrow: 1, display: { xs: "", sm: "block" }, my: 2 }}
+            style={{
+              fontSize: "1.5rem",
+              fontWeight: "700",
+            }}
           >
-            TransSoccer
+            TranSoccer
           </Typography>
-
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button
-                key={item}
-                sx={{ color: props.theme.palette.primary.contrastText }}
-              >
-                {item}
-              </Button>
-            ))}
-          </Box>
+          <div className="content-text">
+            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+              {navItems.map((item) => (
+                <Button
+                  variant="contained"
+                  style={{
+                    textTransform: "none",
+                    fontSize: "1.1rem",
+                    fontWeight: "500",
+                  }}
+                  key={item}
+                  sx={{ color: props.theme.palette.primary.contrastText }}
+                  size="large"
+                  disableElevation
+                >
+                  {item}
+                </Button>
+              ))}
+            </Box>
+          </div>
 
           <IconButton
             sx={{ ml: 1 }}

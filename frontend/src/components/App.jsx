@@ -3,10 +3,14 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Body from "./Body";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 const getDesignTokens = (mode) => ({
+  typography: {
+    fontFamily: ["Nunito Sans", "sans-serif"].join(","),
+  },
   palette: {
     mode,
     ...(mode === "light"
@@ -58,14 +62,17 @@ function App() {
     <div className="App">
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
+          {/* <CssBaseline /> */}
           <Header
+            sx={{ fontFamily: "Nunito Sans", display: "flex" }}
             theme={theme}
             colorMode={colorMode}
             mobileOpen={mobileOpen}
             handleDrawerToggle={handleDrawerToggle}
           />
-          <Body />
-          <Footer />
+
+          <Body theme={theme} mode={mode} />
+          <Footer theme={theme} />
         </ThemeProvider>
       </ColorModeContext.Provider>
     </div>

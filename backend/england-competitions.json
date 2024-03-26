@@ -1,0 +1,73 @@
+{
+  "data": {
+    "competitionGroupName": "England",
+    "competitionGroupCompetitionID": "",
+    "leagueLevel": "",
+    "sortIndex": "",
+    "children": [
+      {
+        "competitionGroupName": "Premier League",
+        "competitionGroupCompetitionID": "GB1",
+        "leagueLevel": "First Tier",
+        "sortIndex": 0,
+        "children": null
+      },
+      {
+        "competitionGroupName": "Championship",
+        "competitionGroupCompetitionID": "GB2",
+        "leagueLevel": "Second Tier",
+        "sortIndex": 1,
+        "children": null
+      },
+      {
+        "competitionGroupName": "League One",
+        "competitionGroupCompetitionID": "GB3",
+        "leagueLevel": "Third Tier",
+        "sortIndex": 2,
+        "children": null
+      },
+      {
+        "competitionGroupName": "League Two",
+        "competitionGroupCompetitionID": "GB4",
+        "leagueLevel": "Fourth Tier",
+        "sortIndex": 3,
+        "children": null
+      },
+      {
+        "competitionGroupName": "National League",
+        "competitionGroupCompetitionID": "CNAT",
+        "leagueLevel": "Fifth Tier",
+        "sortIndex": 4,
+        "children": null
+      },
+      {
+        "competitionGroupName": "National League North",
+        "competitionGroupCompetitionID": "NLN6",
+        "leagueLevel": "Sixth Tier",
+        "sortIndex": 5,
+        "children": null
+      },
+      {
+        "competitionGroupName": "National League South",
+        "competitionGroupCompetitionID": "NLS6",
+        "leagueLevel": "Sixth Tier",
+        "sortIndex": 6,
+        "children": null
+      },
+      {
+        "competitionGroupName": "U18 Premier League",
+        "competitionGroupCompetitionID": "GB18",
+        "leagueLevel": "Youth league",
+        "sortIndex": 7,
+        "children": null
+      },
+      {
+        "competitionGroupName": "Premier League 2",
+        "competitionGroupCompetitionID": "GB21",
+        "leagueLevel": "Reserve league",
+        "sortIndex": 8,
+        "children": null
+      }
+    ]
+  }
+}
