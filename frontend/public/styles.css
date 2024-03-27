@@ -53,7 +53,9 @@
 
   }
   .icon i:hover {
-    background: #efedfb;
+    background: #B6C4B6 !important;
+    transition: 0.3s;
+
   }
   .icon:first-child i {
     margin-left: 10px;
@@ -88,7 +90,8 @@
     /* border: 0.1px solid #d8d5f2; */
   }
   .tabs-box .tab:hover{
-    background: #efedfb;
+    background-color: #B6C4B6 !important; 
+    transition: 0.4s !important;
   }
   .tabs-box.dragging .tab {
     user-select: none;

@@ -9,35 +9,34 @@ function Filter(props) {
   const tabNames = [
     {
       league: "Premier League",
+      chinese: "英超",
       color: "#3D195B",
       icon: "../assets/pl-logo.png",
     },
-    { league: "Bundesliga", color: "#D3010C" },
-    { league: "La Liga", color: "#F44336" },
-    // { league: "... And Coming Soon", color: "grey" },
-    // { league: "Serie A", color: "#008C45" },
-    // { league: "Ligue 1", color: "#0053A0" },
-    // { league: "UEFA Champions League", color: "#141B4D" },
-    // { league: "UEFA Europa League", color: "#1A237E" },
-    // { league: "FIFA World Cup", color: "#009688" },
-    // { league: "Olympics", color: "#000000" },
-    // { league: "Commonwealth Games", color: "#FFD700" },
-    // { league: "Asian Games", color: "#FF0000" },
-    // { league: "Indian Super League", color: "#FF4500" },
-    // { league: "I-League", color: "#0000FF" },
-    // { league: "FIFA U-17 World Cup", color: "#FFC0CB" },
-    // { league: "FIFA U-20 World Cup", color: "#FF1493" },
+    { league: "Bundesliga", chinese: "德甲", color: "#D3010C" },
+    { league: "La Liga", color: "#F44336", chinese: "西甲" },
+    { league: "Serie A", color: "#008fd7", chinese: "意甲" },
+    { league: "Ligue 1", color: "#091C3E", chinese: "法甲" },
+    { league: "Eredivisie", color: "#002e62", chinese: "荷甲" },
+    { league: "Liga Portugal", color: "#6ab444", chinese: "葡超" },
+    { league: "Super Lig", color: "#939393", chinese: "土超" },
+    { league: "Saudi Pro League", color: "#125B34", chinese: "沙地聯" },
+    { league: "Qatar Stars League", color: "#8A1538", chinese: "卡達" },
+    { league: "UAE Pro League", color: "#c7a73b", chinese: "阿職" },
+    { league: "J1 League", color: "#D60032", chinese: "日職" },
+    { league: "K League 1", color: "#192340", chinese: "韓職" },
+    { league: "A-League", color: "#f06321", chinese: "澳職" },
+    { league: "MLS", color: "#E2231A", chinese: "美職" },
+    { league: "Hong Kong Premier League", color: "#141B4D", chinese: "港超" },
   ];
 
   useEffect(() => {
     const tabsBox = tabsBoxRef.current,
-      // allTabs = tabsBox.querySelectorAll(".tab"),
+      // allTabs = allTabsRef.current,
       arrowIcons = arrowIconsRef.current,
       parent0 = parentRef_0.current,
       parent1 = parentRef_1.current;
     let isDragging = false;
-
-    console.log(arrowIcons);
     const handleIcons = (scrollVal) => {
       let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
       parent0.style.display = scrollVal <= 0 ? "none" : "flex";
@@ -89,9 +88,14 @@ function Filter(props) {
             className="tab"
             key={index}
             ref={(el) => (allTabsRef.current[index] = el)}
-            style={{ backgroundColor: tabName.color, color: "#fff" }}
+            style={{
+              backgroundColor: tabName.color,
+              color: "#fff",
+              opacity: props.filter === tabName.league ? 0.7 : 1,
+            }}
+            onClick={() => props.selectLeague(tabName.league)}
           >
-            {tabName.league}
+            {tabName.league} {tabName.chinese}
           </li>
         ))}
       </ul>

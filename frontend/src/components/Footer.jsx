@@ -7,7 +7,8 @@ function Footer(props) {
       <Box
         sx={{ p: 3, backgroundColor: props.theme.palette.primary.background }}
       >
-        <p>© {new Date().getFullYear()}</p>
+        <p>© {new Date().getFullYear()} Ivan Chan</p>
+        <p>Supported by TransferMarkt DB API from RapidAPI</p>
       </Box>
     </footer>
   );

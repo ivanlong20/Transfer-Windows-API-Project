@@ -10,6 +10,13 @@ import clubs from "../assets/clubs.json";
 import competitions from "../assets/competitions.json";
 import countries from "../assets/countries.json";
 import players from "../assets/players.json";
+import players_secondary from "../assets/players_secondary.json";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
+import ScheduleIcon from "@mui/icons-material/Schedule";
+
+let notFoundPlayer = [];
+let notFoundClub = [];
 
 function getAge(dateString) {
   var today = new Date();
@@ -23,13 +30,20 @@ function getAge(dateString) {
 }
 
 export default function PlayerCard(props) {
-  {
-    console.log(props.player);
-  }
+  // {
+  //   console.log(props.player);
+  // }
 
-  const footballer = players.data.find(
+  let footballer = players.data.find(
     (player) => player.player_id == props.player.playerID
   );
+  // console.log("First" + footballer);
+
+  if (footballer == undefined) {
+    footballer = players_secondary.data.find(
+      (player) => player.player_id == props.player.playerID
+    );
+  }
 
   const clubFrom = clubs.data.find(
     (club) => club.club_id == props.player.fromClubID
@@ -37,26 +51,105 @@ export default function PlayerCard(props) {
   const clubTo = clubs.data.find(
     (club) => club.club_id == props.player.toClubID
   );
-  // console.log(clubTo);
-  // console.log(footballer);
+
+  if (clubFrom == undefined) {
+    if (!notFoundClub.includes(props.player.fromClubID)) {
+      notFoundClub.push(props.player.fromClubID);
+    }
+  } else if (clubTo == undefined) {
+    if (!notFoundClub.includes(props.player.toClubID)) {
+      notFoundClub.push(props.player.toClubID);
+    }
+  }
+  if (footballer == undefined) {
+    if (!notFoundPlayer.includes(props.player.playerID)) {
+      notFoundPlayer.push(props.player.playerID);
+    }
+  }
+  console.log("Club:" + notFoundClub);
+  console.log("Player:" + notFoundPlayer);
 
   return (
     <Card
       sx={{
-        minWidth: 275,
+        display: "flex",
+        flexDirection: "column",
+        width: 350,
         margin: "10px",
         fontFamily: "Nunito Sans",
         backgroundColor: props.theme.palette.primary.background,
         color: props.theme.palette.primary.contrastText,
+        justifyContent: "space-between",
       }}
     >
       <CardContent
-        sx={{ display: "flex", flexDirection: "column", gap: "5px" }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "5px",
+        }}
       >
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            {props.player.season}
-          </Typography>
+          <Box sx={{ display: "flex", flexDirection: "column" }}>
+            <Typography variant="body2" sx={{ marginBottom: 0 }} gutterBottom>
+              {props.player.season} Season
+            </Typography>
+
+            <Typography
+              sx={{
+                display: "flex",
+                fontSize: 14,
+                alignSelf: "end",
+                alignItems: "center",
+                gap: "3px",
+              }}
+              color="text.secondary"
+              gutterBottom
+            >
+              <ScheduleIcon
+                sx={{
+                  fontSize: 14,
+                  display: "inline-block",
+                }}
+              />
+              {new Date(props.player.transferredAt * 1000).toLocaleDateString()}
+            </Typography>
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "end",
+            }}
+          >
+            <Typography variant="body2" sx={{ alignSelf: "" }}>
+              {props.player.isLoan
+                ? "Loan Transfer"
+                : props.player.wasLoan
+                ? "End of Loan"
+                : "Permanent Transfer"}
+            </Typography>
+            <Typography
+              sx={{ fontSize: 14 }}
+              color="text.secondary"
+              gutterBottom
+            >
+              {props.player.transferFee.value == "?" ||
+              props.player.transferFee.value == "-"
+                ? "N/A"
+                : props.player.transferFee.value == "free transfer"
+                ? "Free"
+                : Math.round(props.player.transferFee.value / 1000000).toFixed(
+                    2
+                  ) +
+                  "M " +
+                  props.player.transferFee.currency}
+            </Typography>
+          </Box>
+        </Box>
+
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Box
             sx={{
               display: "flex",
@@ -70,29 +163,25 @@ export default function PlayerCard(props) {
               src={footballer != undefined ? footballer.image_url : null}
             ></Avatar>
             <Typography variant="h5" component="div">
-              {footballer != undefined ? footballer.first_name : "N/A"}{" "}
-              {footballer != undefined && footballer.last_name}
+              {footballer !== undefined ? footballer.name : "N/A"}
             </Typography>
-            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              {footballer != undefined ? footballer.position + " | " : "N/A"}
-              {footballer != undefined
+            <Typography
+              sx={{ mb: 1.5, textAlign: "center" }}
+              color="text.secondary"
+            >
+              {footballer !== undefined && footballer.position !== undefined
+                ? footballer.position + " | "
+                : "N/A"}
+              {footballer !== undefined &&
+              footballer.date_of_birth !== undefined
                 ? getAge(footballer.date_of_birth) + " | "
-                : " | N/A"}
-              {footballer != undefined
+                : null}
+              {footballer !== undefined &&
+              footballer.country_of_citizenship !== undefined
                 ? footballer.country_of_citizenship
-                : " | N/A"}
+                : null}
             </Typography>
           </Box>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            {props.player.transferFee.value == "?" ||
-            props.player.transferFee.value == "-"
-              ? "N/A"
-              : props.player.transferFee.value == "free transfer"
-              ? "Free"
-              : props.player.transferFee.value / 1000000 +
-                "M " +
-                props.player.transferFee.currency}
-          </Typography>
         </Box>
 
         <Box
@@ -113,7 +202,7 @@ export default function PlayerCard(props) {
             }}
           >
             <Typography variant="h6" component="div">
-              {clubFrom != undefined ? (
+              {clubFrom !== undefined ? (
                 <img
                   style={{ height: "80px" }}
                   src={
@@ -134,7 +223,7 @@ export default function PlayerCard(props) {
             </Typography>
           </Box>
           <Typography variant="body2" sx={{ alignSelf: "center" }}>
-            To
+            <ArrowCircleRightIcon />
           </Typography>
           <Box
             sx={{
@@ -146,7 +235,7 @@ export default function PlayerCard(props) {
             }}
           >
             <Typography variant="h6" component="div">
-              {clubTo != undefined ? (
+              {clubTo !== undefined ? (
                 <img
                   style={{ height: "80px" }}
                   src={
@@ -167,33 +256,41 @@ export default function PlayerCard(props) {
             </Typography>
           </Box>
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "end",
-          }}
-        >
-          <Typography variant="body2" sx={{ alignSelf: "" }}>
-            {props.player.isLoan
-              ? "Loan Transfer"
-              : props.player.wasLoan
-              ? "End of Loan"
-              : "Permanent Transfer"}
-          </Typography>
-        </Box>
       </CardContent>
-      <CardActions>
-        <Button
-          size="small"
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+        <CardActions
           sx={{
-            color: props.theme.palette.primary.contrastText,
-            textTransform: "none",
+            alignSelf: "end",
+            marginBottom: "10px",
           }}
         >
-          Details
-        </Button>
-      </CardActions>
+          <a
+            href={
+              footballer !== undefined && footballer.url !== undefined
+                ? footballer.url
+                : null
+            }
+            target="_blank"
+          >
+            <Button
+              size="small"
+              sx={{
+                alignSelf: "end",
+                color: props.theme.palette.primary.contrastText,
+                textTransform: "none",
+              }}
+            >
+              More <ArrowForwardIcon />
+            </Button>
+          </a>
+        </CardActions>
+      </Box>
     </Card>
   );
 }
