@@ -4,7 +4,7 @@ import fs from "fs";
 import cors from "cors";
 
 const corsOptions = {
-  origin: [" https://ivanlong20.github.io/", "http://localhost:3000"],
+  origin: ["https://ivanlong20.github.io/", "http://localhost:3000"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
   allowedHeaders: ["Content-Type", "Authorization"],
 };
