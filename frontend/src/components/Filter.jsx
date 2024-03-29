@@ -21,13 +21,13 @@ function Filter(props) {
     { league: "Liga Portugal", color: "#6ab444", chinese: "葡超" },
     { league: "Super Lig", color: "#939393", chinese: "土超" },
     { league: "Saudi Pro League", color: "#125B34", chinese: "沙地聯" },
-    { league: "Qatar Stars League", color: "#8A1538", chinese: "卡達" },
-    { league: "UAE Pro League", color: "#c7a73b", chinese: "阿職" },
+    { league: "Qatar Stars League", color: "#8A1538", chinese: "卡塔爾星級聯" },
+    { league: "UAE Pro League", color: "#c7a73b", chinese: "阿聯酋超" },
     { league: "J1 League", color: "#D60032", chinese: "日職" },
     { league: "K League 1", color: "#192340", chinese: "韓職" },
     { league: "A-League", color: "#f06321", chinese: "澳職" },
     { league: "MLS", color: "#E2231A", chinese: "美職" },
-    { league: "Hong Kong Premier League", color: "#141B4D", chinese: "港超" },
+    { league: "Hong Kong Premier League", color: "#b2252c", chinese: "港超" },
   ];
 
   useEffect(() => {

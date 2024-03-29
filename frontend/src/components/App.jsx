@@ -66,6 +66,7 @@ function App() {
           <Header
             sx={{ fontFamily: "Nunito Sans", display: "flex" }}
             theme={theme}
+            mode={mode}
             colorMode={colorMode}
             mobileOpen={mobileOpen}
             handleDrawerToggle={handleDrawerToggle}

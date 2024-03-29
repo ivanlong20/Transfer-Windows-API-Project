@@ -248,12 +248,38 @@ export default function PlayerCard(props) {
                 <Avatar style={{}} alt="N/A" />
               )}
             </Typography>
-            <Typography
-              variant="body2"
-              sx={{ width: "10em", textAlign: "center" }}
-            >
-              {clubTo != undefined ? clubTo.name : "N/A"}
-            </Typography>
+
+            {clubTo !== undefined ? (
+              clubTo.name == "Karriereende" ? (
+                <Typography
+                  variant="body2"
+                  sx={{
+                    width: "10em",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  End of Career
+                </Typography>
+              ) : (
+                <Typography
+                  variant="body2"
+                  sx={{
+                    width: "10em",
+                    textAlign: "center",
+                  }}
+                >
+                  {clubTo.name}
+                </Typography>
+              )
+            ) : (
+              <Typography
+                variant="body2"
+                sx={{ width: "10em", textAlign: "center" }}
+              >
+                N/A
+              </Typography>
+            )}
           </Box>
         </Box>
       </CardContent>

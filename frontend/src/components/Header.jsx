@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -17,20 +17,43 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 
 const drawerWidth = 240;
-const navItems = ["Market", "About"];
+const navItems = ["Recent Transfers"];
 
 function Header(props) {
+  let listener = null;
+  const [scrollState, setScrollState] = useState("top");
+
+  useEffect(() => {
+    listener = document.addEventListener("scroll", (e) => {
+      var scrolled = document.scrollingElement.scrollTop;
+      if (scrolled >= 120) {
+        if (scrollState !== "amir") setScrollState("amir");
+      } else {
+        if (scrollState !== "top") setScrollState("top");
+      }
+    });
+
+    return () => {
+      document.removeEventListener("scroll", listener);
+    };
+  }, [scrollState]);
+
   const { window } = props;
+
   const drawer = (
     <Box onClick={props.handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
         TranSoccer
       </Typography>
       <Divider />
-      <List>
+      <List
+        sx={{
+          textAlign: "center",
+        }}
+      >
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
+            <ListItemButton>
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
@@ -49,6 +72,7 @@ function Header(props) {
       </IconButton>
     </Box>
   );
+
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
@@ -60,51 +84,58 @@ function Header(props) {
     >
       <CssBaseline />
       <AppBar
+        id={props.mode === "light" ? "navbar-light" : "navbar-dark"}
+        className={scrollState === "top" ? null : "transition"}
         component="nav"
         elevation={0}
-        sx={{
-          backgroundColor: props.theme.palette.primary.main,
-        }}
       >
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={props.handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
-            <MenuIcon />
-          </IconButton>
-
+             <MenuIcon /> 
+          </IconButton> }*/}
           <Typography
-            variant="h6"
+            variant="h3"
             component="div"
             sx={{ flexGrow: 1, display: { xs: "", sm: "block" }, my: 2 }}
-            style={{
-              fontSize: "1.5rem",
-              fontWeight: "700",
-            }}
+            className="logo"
           >
             TranSoccer
           </Typography>
           <div className="content-text">
-            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            <Box sx={{ display: { xs: "block", sm: "block" } }}>
               {navItems.map((item) => (
-                <Button
-                  variant="contained"
+                <a
+                  className={
+                    props.mode === "light" ? "nav-link-light" : "nav-link-dark"
+                  }
+                  href="#transfers"
                   style={{
+                    textDecoration: "none",
                     textTransform: "none",
                     fontSize: "1.1rem",
                     fontWeight: "500",
+                    backgroundColor:
+                      scrollState === "top"
+                        ? "rgba(57, 57, 57,  0)"
+                        : props.theme.palette.primary.main,
+                    color:
+                      props.mode === "light"
+                        ? scrollState === "top"
+                          ? "#FAFAFA"
+                          : "#222222"
+                        : scrollState === "top"
+                        ? "#FAFAFA"
+                        : "#FAFAFA",
                   }}
-                  key={item}
-                  sx={{ color: props.theme.palette.primary.contrastText }}
-                  size="large"
-                  disableElevation
                 >
                   {item}
-                </Button>
+                </a>
               ))}
             </Box>
           </div>

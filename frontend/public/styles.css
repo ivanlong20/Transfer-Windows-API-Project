@@ -6,6 +6,23 @@
     background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='40' height='59.428' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(0, 0%, 13%, 1)'/><path d='M0 70.975V47.881m20-1.692L8.535 52.808v13.239L20 72.667l11.465-6.62V52.808zm0-32.95l11.465-6.62V-6.619L20-13.24 8.535-6.619V6.619L20 13.24m8.535 4.927v13.238L40 38.024l11.465-6.62V18.166L40 11.546zM20 36.333L0 47.88m0 0v23.094m0 0l20 11.548 20-11.548V47.88m0 0L20 36.333m0 0l20 11.549M0 11.547l-11.465 6.619v13.239L0 38.025l11.465-6.62v-13.24L0 11.548v-23.094l20-11.547 20 11.547v23.094M20 36.333V13.24'  stroke-linecap='square' stroke-width='1.5' stroke='hsla(120, 11%, 74%, 1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>")
 }
 
+.light-image{
+  background-image: url('tottenham-hotspur-stadium-spurs-populous-london_dezeen_2364_col_17.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.dark-image{
+  background-image: url('tottenham-hotspur-stadium-spurs-populous-london_dezeen_2364_col_17.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+
+}
+
 .content-text{
     font-family: "Nunito Sans", sans-serif;
     font-weight: 300;
@@ -20,6 +37,7 @@
     width: 95vw;
     /* background: #fff; */
     border-radius: 13px;
+    margin-bottom: 20px;
   }
   .wrapper .icon {
     position: absolute;
@@ -101,4 +119,158 @@
     color: #fff;
     background: #5372F0;
     border-color: transparent;
+  }
+  .title{
+    /* -webkit-background-clip: text; */
+  -webkit-text-fill-color: transparent;
+  }
+
+  #navbar-light{
+    color: white;
+    background-color: rgba(57, 57, 57,  0);
+    -webkit-transition: background-color 200ms linear;
+    -moz-transition: background-color 200ms linear;
+    -o-transition: background-color 200ms linear;
+    -ms-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+  }
+
+  #navbar-light.transition{
+    background-color: #FAFAFA;
+    color:#222222;
+  }
+
+  #navbar-dark{
+    background-color: rgba(57, 57, 57,  0);
+    -webkit-transition: background-color 200ms linear;
+    -moz-transition: background-color 200ms linear;
+    -o-transition: background-color 200ms linear;
+    -ms-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+  }
+
+  #navbar-dark.transition{
+    background-color: #222222;
+  }
+
+  .nav-link-light{
+    padding:15px;
+    border-radius: 50em;
+  }
+
+  .nav-link-light:hover{
+    color: white !important;;
+    background-color: #304D30!important;
+    border-radius: 50em;
+    padding:15px;
+  }
+
+  .nav-link-dark{
+    padding:15px;
+    border-radius: 50em;
+  }
+
+  .nav-link-dark:hover{
+    padding:15px;
+    color: white !important;;
+    background-color: #304D30!important;
+    border-radius: 50em;
+  }
+
+  html{
+    scroll-behavior: smooth;
+  }
+
+  .logo{
+    font-family: "Stick No Bills", sans-serif !important;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .container {
+    width: 100%;
+    height: 100%;
+    background-color: #c9d6df;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .field {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 300px;
+  }
+
+
+.overlay{
+  position: absolute; 
+  background: rgba(57, 57, 57, 0.5);
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+  
+  .arrow {
+    width: 0;
+    height: 40px;
+    border: 1px solid white;
+    position: relative;
+    animation: scroll 1.5s infinite;
+    -webkit-animation: scroll 1.5s infinite;
+    align-self: self-end;
+    margin-bottom: 10vh;
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: -5px;
+      width: 1px;
+      height: 10px;
+      
+      
+      border-top: 10px solid white;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+    }
+  }
+  
+  @keyframes scroll {
+    0% {
+      height: 40px;
+    }
+    30% {
+      height: 70px;
+    }
+    60% {
+      height: 40px;
+    }
+  }
+  
+  @-webkit-keyframes scroll {
+    0% {
+      height: 40px;
+    }
+    30% {
+      height: 70px;
+    }
+    60% {
+      height: 40px;
+    }
   }

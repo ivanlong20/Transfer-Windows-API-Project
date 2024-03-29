@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Filter from "./Filter";
 import PlayerCard from "./PlayerCard";
+import { Typography } from "@mui/material";
+import { Skeleton } from "@mui/material";
 
 function Body(props) {
   const [loading, setLoading] = React.useState(true);
@@ -137,27 +139,83 @@ function Body(props) {
   // console.log(await data.data[0].playerID);
 
   return (
-    <Box
-      height="100%"
-      component="main"
-      sx={{
-        mt: 8,
-        p: 3,
-        justifyContent: "center",
-      }}
-      className={
-        props.mode === "light" ? "light-background" : "dark-background"
-      }
-    >
-      <Filter theme={props.theme} selectLeague={selectLeague} filter={filter} />
-      <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-        {!loading ? (
-          data.data.map((player) => (
-            <PlayerCard theme={props.theme} player={player} />
-          ))
-        ) : (
-          <h1>Loading...</h1>
-        )}
+    <Box>
+      <Box
+        className={[props.mode === "light" ? "light-image" : "dark-image"]}
+        sx={{
+          height: "90vh",
+          justifyContent: "center",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Box
+          className={"overlay"}
+          sx={{
+            height: "90vh",
+          }}
+        >
+          <Typography
+            variant="h2"
+            marginLeft={10}
+            id="transfers"
+            sx={{ color: "white" }}
+          >
+            Transfer Market <br />
+            <div style={{ fontWeight: "bold" }}>At a glance.</div>
+          </Typography>
+        </Box>
+        <div class="arrow"></div>
+      </Box>
+      <Box
+        height="100%"
+        component="main"
+        sx={{
+          p: 3,
+          justifyContent: "center",
+        }}
+        className={
+          props.mode === "light" ? "light-background" : "dark-background"
+        }
+      >
+        {/* <Box
+          sx={{
+            mb: 2,
+            display: "flex",
+            padding: "10px",
+          }}
+        >
+          <Typography
+            className="title"
+            variant="h4"
+            sx={{
+              backgroundColor: "#B6C4B6",
+              padding: "10px",
+            }}
+          >
+            Recent Transfers
+          </Typography>
+        </Box> */}
+        <Filter
+          theme={props.theme}
+          selectLeague={selectLeague}
+          filter={filter}
+        />
+        <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+          {!loading ? (
+            data.data.map((player) => (
+              <PlayerCard theme={props.theme} player={player} />
+            ))
+          ) : (
+            <div>
+              <Skeleton animation="wave" />
+              <Skeleton animation="wave" />
+              <Skeleton animation="wave" />
+              <Skeleton animation="wave" />
+              <Skeleton animation="wave" />
+            </div>
+          )}
+        </Box>
       </Box>
     </Box>
   );
