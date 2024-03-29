@@ -562,7 +562,7 @@ app.get("/saudi-pro-league", async (req, res) => {
     params: {
       locale: "UK",
       competition_id: "SA1",
-      top_transfers_first: "false",
+      top_transfers_first: "true",
     },
     headers: {
       "X-RapidAPI-Key": "33d0bc40edmsha14161fb8137d01p18b9d0jsn9c68138c30f6",
@@ -623,7 +623,7 @@ app.get("/j1-league", async (req, res) => {
     params: {
       locale: "UK",
       competition_id: "JAP1",
-      top_transfers_first: "false",
+      top_transfers_first: "true",
     },
     headers: {
       "X-RapidAPI-Key": "33d0bc40edmsha14161fb8137d01p18b9d0jsn9c68138c30f6",
@@ -682,7 +682,7 @@ app.get("/uae-pro-league", async (req, res) => {
     params: {
       locale: "UK",
       competition_id: "UAE1",
-      top_transfers_first: "false",
+      top_transfers_first: "true",
     },
     headers: {
       "X-RapidAPI-Key": "33d0bc40edmsha14161fb8137d01p18b9d0jsn9c68138c30f6",
@@ -742,7 +742,7 @@ app.get("/k-league-1", async (req, res) => {
     params: {
       locale: "UK",
       competition_id: "RSK1",
-      top_transfers_first: "false",
+      top_transfers_first: "true",
     },
     headers: {
       "X-RapidAPI-Key": "33d0bc40edmsha14161fb8137d01p18b9d0jsn9c68138c30f6",
@@ -802,7 +802,7 @@ app.get("/qatar-stars-league", async (req, res) => {
     params: {
       locale: "UK",
       competition_id: "QSL",
-      top_transfers_first: "false",
+      top_transfers_first: "true",
     },
     headers: {
       "X-RapidAPI-Key": "33d0bc40edmsha14161fb8137d01p18b9d0jsn9c68138c30f6",
@@ -868,7 +868,7 @@ app.get("/australia-a-league", async (req, res) => {
     params: {
       locale: "UK",
       competition_id: "AUS1",
-      top_transfers_first: "false",
+      top_transfers_first: "true",
     },
     headers: {
       "X-RapidAPI-Key": "33d0bc40edmsha14161fb8137d01p18b9d0jsn9c68138c30f6",
@@ -934,7 +934,7 @@ app.get("/major-league-soccer", async (req, res) => {
     params: {
       locale: "UK",
       competition_id: "MLS1",
-      top_transfers_first: "false",
+      top_transfers_first: "true",
     },
     headers: {
       "X-RapidAPI-Key": "33d0bc40edmsha14161fb8137d01p18b9d0jsn9c68138c30f6",
