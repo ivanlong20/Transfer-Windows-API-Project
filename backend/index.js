@@ -3,6 +3,14 @@ import axios from "axios";
 import fs from "fs";
 import cors from "cors";
 
+const corsOptions = {
+  origin: [" https://ivanlong20.github.io/", "http://localhost:3000"],
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
+
 const app = express();
 const port = 80;
 
