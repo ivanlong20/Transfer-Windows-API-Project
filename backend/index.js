@@ -3,17 +3,18 @@ import axios from "axios";
 import fs from "fs";
 import cors from "cors";
 
-const corsOptions = {
-  origin: ["https://ivanlong20.github.io/", "http://localhost:3000"],
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-  allowedHeaders: ["Content-Type", "Authorization"],
-};
+// const corsOptions = {
+//   origin: ["https://ivanlong20.github.io", "http://localhost:3000"],
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+//   allowedHeaders: ["Content-Type", "Authorization"],
+// };
 
 const app = express();
 const port = 80;
 
 app.use(express.urlencoded({ extended: true }));
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors());
 
 app.get("/players", async (req, res) => {});
 
