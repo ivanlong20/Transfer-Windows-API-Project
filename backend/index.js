@@ -9,12 +9,11 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-app.use(cors(corsOptions));
-
 const app = express();
 const port = 80;
 
 app.use(express.urlencoded({ extended: true }));
+app.use(cors(corsOptions));
 
 app.get("/players", async (req, res) => {});
 
